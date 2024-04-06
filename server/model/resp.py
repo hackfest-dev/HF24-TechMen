@@ -55,7 +55,7 @@ def calculate_respiratory_rate(video_path, motion_threshold):
     plt.xlabel('Time (s)')
     plt.ylabel('Cumulative respiratory motion count')
     plt.savefig('respiratory_rate.png')
-    plt.show()
+    ## plt.show()
     time.sleep(1)
     # Open the image
     img = Image.open('respiratory_rate.png')

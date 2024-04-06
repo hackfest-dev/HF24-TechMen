@@ -47,7 +47,7 @@ export default function Features() {
           <Card className=" w-[250px] h-[140px] hover:scale-105 transition shadow-sm hover:shadow-md hover:shadow-[rgb(225,29,73)] shadow-[rgb(225,29,73)]">
             <CardHeader>
               <CardTitle>Implementation</CardTitle>
-              <CardDescription>That's how you do it</CardDescription>
+              <CardDescription>That is how you do it</CardDescription>
             </CardHeader>
             <CardFooter className="relative">
               <div className="absolute right-10 bottom-0 text-3xl cursor-pointer text-[rgb(225,29,73)]">

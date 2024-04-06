@@ -8,19 +8,28 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Footer from "@/components/Footer";
+import Autoplay from "embla-carousel-autoplay";
 
 export default function Page() {
   return (
     <div>
       <Navbar />
       <div className="md:w-[600px] m-auto mt-20 mb-16 sm:w-[400px] max-sm:w-[300px]">
-        <Carousel>
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 3000,
+            }),
+          ]}
+        >
           <CarouselContent>
             <CarouselItem className="p-10 m-auto">
               <p className="text-3xl mb-3">
                 Neonatal Sleep Monitoring using Optical Flow (RAFT)
               </p>
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">Introduction</p>
+              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+                Introduction
+              </p>
               <p>
                 This project aims to develop a system for monitoring sleep in
                 neonates using optical flow techniques, particularly the RAFT
@@ -31,7 +40,9 @@ export default function Page() {
               </p>
             </CarouselItem>
             <CarouselItem className="p-10 m-auto">
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">Features</p>
+              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+                Features
+              </p>
               <ul className="list-disc">
                 <li>Non-invasive monitoring of neonatal sleep patterns</li>
                 <li>
@@ -58,7 +69,9 @@ export default function Page() {
               </ul>
             </CarouselItem>
             <CarouselItem className="p-10 m-auto">
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">Requirements</p>
+              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+                Requirements
+              </p>
               <ul className="list-disc mb-5">
                 <li>Python 3.x</li>
                 <li>OpenCV</li>
@@ -66,7 +79,9 @@ export default function Page() {
                 <li>RAFT (Optical Flow with Occlusions) library</li>
                 <li>Webcam or camera for capturing neonatal sleep footage</li>
               </ul>
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">Installation</p>
+              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+                Installation
+              </p>
               <ul className="list-disc">
                 <li>Clone the repository:</li>
                 <li>Install dependencies:</li>
@@ -74,7 +89,9 @@ export default function Page() {
               </ul>
             </CarouselItem>
             <CarouselItem className="p-10 m-auto">
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">Usage</p>
+              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+                Usage
+              </p>
               <ol className="mb-5">
                 <li>Connect a webcam or camera to your system.</li>
                 <li>Run the main script</li>
@@ -83,7 +100,9 @@ export default function Page() {
                   monitoring process.
                 </li>
               </ol>
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">Contributing</p>
+              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+                Contributing
+              </p>
               <p>
                 Contributions are welcome! If you would like to contribute to
                 this project, please fork the repository and submit a pull
@@ -91,13 +110,17 @@ export default function Page() {
               </p>
             </CarouselItem>
             <CarouselItem className="p-10 m-auto">
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">License</p>
+              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+                License
+              </p>
               <p className="mb-5">
                 This project is licensed under the MIT License - see the LICENSE
                 file for details.
               </p>
 
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">Acknowledgments</p>
+              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+                Acknowledgments
+              </p>
               <ul className="list-disc">
                 <li>
                   This project was inspired by the need for non-invasive methods
@@ -114,7 +137,7 @@ export default function Page() {
           <CarouselNext />
         </Carousel>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

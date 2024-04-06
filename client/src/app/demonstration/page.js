@@ -1,19 +1,38 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
-  const handleInput = (e) => {
-    const data = e.target.files[0];
+  const [file, setFile] = useState(undefined);
+
+  const handleSubmit = async (e) => {
+    if (file === undefined) {
+      alert("File is not present");
+      return;
+    }
+
+    let formData = new FormData();
+    formData.append("file", file);
     try {
-      console.log(data);
-        axios.get("http://172.16.16.218:5000/demonstration")
+      const response = await axios.get("http://172.16.16.218:5000/demo", {
+        body: formData,
+      });
+      alert("Sucessfull", response);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleInput = async (e) => {
+    const data = e.target.files[0];
+
+    if (data != null) {
+      setFile(data);
     }
   };
 
@@ -28,10 +47,9 @@ export default function Page() {
           accept="video/*"
           onInput={handleInput}
         />
+        <Button onClick={handleSubmit}>Submit</Button>
       </div>
-      <div className="h-[700px]">
-
-      </div>
+      <div className="h-[700px]"></div>
       <Footer />
     </div>
   );

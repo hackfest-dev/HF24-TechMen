@@ -40,9 +40,9 @@ export default function Navbar() {
     <div className="">
       <div className={`  flex justify-center w-full`}>
         <nav
-          className={`md:flex  items-center justify-between px-5 py-3 max-w-[1100px] w-full rounded-md m-5`}
+          className={`md:flex text-xl items-center justify-between px-5 py-3 max-w-[1100px] w-full rounded-md m-5`}
         >
-          <h1 className="text-xl cursor-pointer">TechMen</h1>
+          <h1 className="text-2xl cursor-pointer hover:text-[rgb(225,29,73)]" onClick={()=>window.open('/','_self')}>TechMen</h1>
           <div className="flex">
             <ul
               className={`md:flex items-center md:space-x-2 m-auto max-md:space-y-2

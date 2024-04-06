@@ -50,7 +50,7 @@ export default function Features() {
               <CardDescription>That is how you do it</CardDescription>
             </CardHeader>
             <CardFooter className="relative">
-              <div className="absolute right-10 bottom-0 text-3xl cursor-pointer text-[rgb(225,29,73)]">
+              <div className="absolute right-10 bottom-0 text-3xl cursor-pointer text-[rgb(225,29,73)]" onClick={()=>window.open('/demonstration','_self')}>
                 <FaArrowRightLong />
               </div>
             </CardFooter>

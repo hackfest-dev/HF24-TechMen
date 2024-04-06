@@ -66,4 +66,7 @@
   .bd{
     @apply border border-black;
   }
+  .doc-heading{
+    @apply text-3xl mb-3 underline text-[rgb(225,29,73)];
+  }
 }

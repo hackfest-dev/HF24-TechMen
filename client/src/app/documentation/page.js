@@ -23,12 +23,12 @@ export default function Page() {
             }),
           ]}
         >
-          <CarouselContent>
+          <CarouselContent className="md:text-xl">
             <CarouselItem className="p-10 m-auto">
-              <p className="text-3xl mb-3">
+              <p className="text-3xl mb-3 font-bold">
                 Neonatal Sleep Monitoring using Optical Flow (RAFT)
               </p>
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+              <p className="doc-heading">
                 Introduction
               </p>
               <p>
@@ -41,7 +41,7 @@ export default function Page() {
               </p>
             </CarouselItem>
             <CarouselItem className="p-10 m-auto">
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+              <p className="doc-heading">
                 Features
               </p>
               <ul className="list-disc">
@@ -70,7 +70,7 @@ export default function Page() {
               </ul>
             </CarouselItem>
             <CarouselItem className="p-10 m-auto">
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+              <p className="doc-heading">
                 Requirements
               </p>
               <ul className="list-disc mb-5">
@@ -80,7 +80,7 @@ export default function Page() {
                 <li>RAFT (Optical Flow with Occlusions) library</li>
                 <li>Webcam or camera for capturing neonatal sleep footage</li>
               </ul>
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+              <p className="doc-heading">
                 Installation
               </p>
               <ul className="list-disc">
@@ -90,7 +90,7 @@ export default function Page() {
               </ul>
             </CarouselItem>
             <CarouselItem className="p-10 m-auto">
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+              <p className="doc-heading">
                 Usage
               </p>
               <ol className="mb-5">
@@ -101,7 +101,7 @@ export default function Page() {
                   monitoring process.
                 </li>
               </ol>
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+              <p className="doc-heading">
                 Contributing
               </p>
               <p>
@@ -111,7 +111,7 @@ export default function Page() {
               </p>
             </CarouselItem>
             <CarouselItem className="p-10 m-auto">
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+              <p className="doc-heading">
                 License
               </p>
               <p className="mb-5">
@@ -119,7 +119,7 @@ export default function Page() {
                 file for details.
               </p>
 
-              <p className="text-2xl mb-3 underline text-[rgb(225,29,73)]">
+              <p className="doc-heading">
                 Acknowledgments
               </p>
               <ul className="list-disc">

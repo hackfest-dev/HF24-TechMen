@@ -8,7 +8,7 @@ import {
 export default function Impact() {
   return (
     <div className=" dark:bg-[rgb(26,24,26)] bg-[rgb(255,201,213)] py-16 mb-16">
-      <div className="w-[700px] m-auto text-xl">
+      <div className="md:w-[700px] w-[400px] max-sm:w-[300px] m-auto text-xl">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger>What problem are we solving?</AccordionTrigger>
@@ -37,7 +37,7 @@ export default function Impact() {
               <span className="text-[rgb(225,29,73)] italic">
                 respiratory infections, metabolic and neurological disorders
               </span>{" "}
-              . Monitoring respiratoins can provide early insights to diagnose
+              . Monitoring respiration can provide early insights to diagnose
               these symptoms.
             </AccordionContent>
           </AccordionItem>

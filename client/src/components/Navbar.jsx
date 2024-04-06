@@ -42,7 +42,7 @@ export default function Navbar() {
         <nav
           className={`md:flex text-xl items-center justify-between px-5 py-3 max-w-[1100px] w-full rounded-md m-5`}
         >
-          <h1 className="text-2xl cursor-pointer hover:text-[rgb(225,29,73)]" onClick={()=>window.open('/','_self')}>TechMen</h1>
+          <h1 className="text-3xl cursor-pointer hover:text-[rgb(225,29,73)] font-bold" onClick={()=>window.open('/','_self')}>NeoResp</h1>
           <div className="flex">
             <ul
               className={`md:flex items-center md:space-x-2 m-auto max-md:space-y-2

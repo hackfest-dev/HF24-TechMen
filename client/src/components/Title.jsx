@@ -1,4 +1,4 @@
-import baby_img from "./baby.png";
+
 import Image from "next/image";
 
 export default function Title() {
@@ -12,7 +12,7 @@ export default function Title() {
           className=" w-[300px] h-[300px] rounded-full  "
         />
   */}
-        <p className="m-auto text-6xl">Using <span className="text-[rgb(225,29,73)]">optical Flow</span> for Respiratory Monitoring in Neonates</p>
+        <p className="m-auto text-6xl max-md:text-4xl">Using <span className="text-[rgb(225,29,73)]">Optical Flow</span> for Respiratory Monitoring in Neonates</p>
       </div>
     </>
   );

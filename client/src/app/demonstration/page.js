@@ -9,20 +9,22 @@ import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const [file, setFile] = useState(undefined);
+  const [dataUrl, setDataUrl] = useState(undefined);
 
   const handleSubmit = async (e) => {
     if (file === undefined) {
       alert("File is not present");
       return;
     }
-
-    let formData = new FormData();
-    formData.append("file", file);
     try {
-      const response = await axios.get("http://172.16.16.218:5000/demo", {
-        body: formData,
+      console.log(dataUrl);
+      await fetch(`http://172.16.16.218:5000/demo`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({ file: dataUrl }),
       });
-      alert("Sucessfull", response);
     } catch (error) {
       console.log(error);
     }
@@ -33,6 +35,14 @@ export default function Page() {
 
     if (data != null) {
       setFile(data);
+
+      let videoBlob = new Blob([data], { type: "video/mp4" });
+      let reader = new FileReader();
+      reader.onload = function (event) {
+        setDataUrl(event.target.result);
+      };
+
+      reader.readAsDataURL(videoBlob);
     }
   };
 

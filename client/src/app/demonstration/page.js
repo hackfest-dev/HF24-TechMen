@@ -7,12 +7,30 @@ import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import Image from "next/image";
 
 export default function Page() {
   const [file, setFile] = useState(undefined);
   const [dataUrl, setDataUrl] = useState(undefined);
-
+  const [result, setResult] = useState(undefined);
+  const [rate, setRate] = useState(0);
   const [load, setLoad] = useState(false);
+  const [ graph , setGraph ] = useState(undefined);
+
+  const convertDataUrlToVideo = (base64String,type) => {
+    let byteString = atob(base64String);
+
+    let arrayBuffer = new ArrayBuffer(byteString.length);
+    let uint8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      uint8Array[i] = byteString.charCodeAt(i);
+    }
+
+    let blob = new Blob([arrayBuffer], { type: type });
+
+    let url = URL.createObjectURL(blob);
+    return url;
+  };
 
   const handleSubmit = async (e) => {
     setLoad(true);
@@ -22,15 +40,18 @@ export default function Page() {
       return;
     }
     try {
-      await fetch(`http://172.16.16.218:5000/demo`, {
+      await fetch(`http://172.16.16.218:5000/test`, {
         headers: {
           "Content-Type": "application/json",
         },
         method: "POST",
         body: JSON.stringify({ file: dataUrl }),
-      }).then(async(res) => {
+      }).then(async (res) => {
         const data = await res.json();
-        console.log(data);
+        
+        setRate(data.respiratoryRate);
+        setResult(convertDataUrlToVideo(data.video , "video/mp4"))
+        setGraph(convertDataUrlToVideo(data.graph , "image/png"))
         setLoad(false);
       });
     } catch (error) {
@@ -72,6 +93,23 @@ export default function Page() {
           <>
             <Skeleton className="w-[300px] h-[300px] rounded-md" />
             <Skeleton className="w-[300px] h-[300px] rounded-md" />
+          </>
+        ) : result ? (
+          <>
+            <video
+              className="w-[300px] h-[300px] rounded-md"
+              controls
+              src={dataUrl}
+              autoPlay
+            ></video>
+            <video
+              className="w-[300px] h-[300px] rounded-md"
+              controls
+              src={result}
+              autoPlay 
+            ></video>
+            <Image src={graph} alt="graph" width={300} height={300} />
+            <p>Respiratory Rate: {rate}</p>
           </>
         ) : (
           <></>

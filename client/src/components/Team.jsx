@@ -19,9 +19,9 @@ export default function Team() {
         </div>
         <div>
           <Image src={athul} className="rounded-full h-40 w-40 m-auto"></Image>
-          <p className="text-center text-xl mt-2 max-md:mb-3">Athul D Bhandary</p>
+          <p className="text-center text-xl mt-2 max-md:mb-3 md:mb-10">Athul D Bhandary</p>
         </div>
-      </div>
+      </div>    
     </div>
   );
 }

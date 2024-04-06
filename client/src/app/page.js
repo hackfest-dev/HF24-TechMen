@@ -5,7 +5,7 @@ import Features from "@/components/Features";
 import Title from "@/components/Title";
 import Team from "@/components/Team";
 import Footer from "@/components/Footer";
-import Documentation from "@/components/Documentation";
+import Impact from "@/components/Impact";
 
 export default function Home() {
   return (
@@ -15,6 +15,7 @@ export default function Home() {
         <Title />
         <Features />
       </div>
+      <Impact />
       <Team />
       <Footer />
     </>

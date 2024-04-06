@@ -15,9 +15,9 @@ export default function Page() {
   const [result, setResult] = useState(undefined);
   const [rate, setRate] = useState(0);
   const [load, setLoad] = useState(false);
-  const [ graph , setGraph ] = useState(undefined);
+  const [graph, setGraph] = useState(undefined);
 
-  const convertDataUrlToVideo = (base64String,type) => {
+  const convertDataUrlToVideo = (base64String, type) => {
     let byteString = atob(base64String);
 
     let arrayBuffer = new ArrayBuffer(byteString.length);
@@ -48,10 +48,10 @@ export default function Page() {
         body: JSON.stringify({ file: dataUrl }),
       }).then(async (res) => {
         const data = await res.json();
-        
+
         setRate(data.respiratoryRate);
-        setResult(convertDataUrlToVideo(data.video , "video/mp4"))
-        setGraph(convertDataUrlToVideo(data.graph , "image/png"))
+        setResult(convertDataUrlToVideo(data.video, "video/mp4"));
+        setGraph(convertDataUrlToVideo(data.graph, "image/png"));
         setLoad(false);
       });
     } catch (error) {
@@ -88,14 +88,14 @@ export default function Page() {
         />
         <Button onClick={handleSubmit}>Submit</Button>
       </div>
-      <div className="h-[700px] flex justify-center space-x-5 mt-5">
         {load ? (
           <>
+            <div className="h-[700px] flex justify-center space-x-5 mt-5">
             <Skeleton className="w-[300px] h-[300px] rounded-md" />
-            <Skeleton className="w-[300px] h-[300px] rounded-md" />
+            <Skeleton className="w-[300px] h-[300px] rounded-md" /></div>
           </>
         ) : result ? (
-          <>
+          <><div className="flex justify-center space-x-5 mt-5">
             <video
               className="w-[300px] h-[300px] rounded-md"
               controls
@@ -106,16 +106,16 @@ export default function Page() {
               className="w-[300px] h-[300px] rounded-md"
               controls
               src={result}
-              autoPlay 
-            ></video>
-            <Image src={graph} alt="graph" width={300} height={300} />
-            <p>Respiratory Rate: {rate}</p>
+              autoPlay
+            ></video></div>
+            <Image src={graph} alt="graph" width={300} height={300} className="m-auto mt-8"/>
+            <p className="text-center mb-5">Respiratory Rate: {rate}</p>
           </>
         ) : (
           <></>
         )}
-      </div>
-      <Footer />
+        <div className={`${result? '':'absolute bottom-0 w-full'}`}><Footer/></div>
+      
     </div>
   );
 }

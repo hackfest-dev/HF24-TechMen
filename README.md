@@ -45,12 +45,10 @@ This project aims to develop a system for monitoring sleep in neonates using opt
 
 Contributions are welcome! If you would like to contribute to this project, please fork the repository and submit a pull request with your changes.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
-- This project was inspired by the need for non-invasive methods of monitoring neonatal sleep in NICU settings.
+- This project was inspired by the need for non-invasive methods of monitoring neonatal sleep 
 - Special thanks to the creators and contributors of the RAFT algorithm for providing a robust optical flow solution.
 

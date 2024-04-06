@@ -95,15 +95,15 @@ export default function Page() {
             <Skeleton className="w-[300px] h-[300px] rounded-md" /></div>
           </>
         ) : result ? (
-          <><div className="flex justify-center space-x-5 mt-5">
+          <><div className="md:flex justify-center md:space-x-5 mt-5">
             <video
-              className="w-[300px] h-[300px] rounded-md"
+              className="w-[300px] h-[300px] rounded-md max-md:m-auto"
               controls
               src={dataUrl}
               autoPlay
             ></video>
             <video
-              className="w-[300px] h-[300px] rounded-md"
+              className="w-[300px] h-[300px] rounded-md max-md:m-auto"
               controls
               src={result}
               autoPlay

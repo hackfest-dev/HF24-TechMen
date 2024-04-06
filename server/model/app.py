@@ -36,20 +36,22 @@ def convert_data_url_to_video(data_url):
     with open("video-data.mp4", "wb") as f:
         f.write(data)
 
-def convert_video_to_data_url(video_path):
+def convert_video_to_data_url(video_path , delete=True):
     with open(video_path, "rb") as f:
         data = f.read()
     data = base64.b64encode(data)
-    os.remove(video_path)
+    if delete:
+        os.remove(video_path)
     return data.decode('utf-8')
 
-def get_respirator_rate_from_image(img_path):
+def get_respirator_rate_from_image(img_path , delete=True):
     img = Image.open(img_path)
     exif_dict = piexif.load(img.info['exif'])
     respiratory_rate = exif_dict["0th"][piexif.ImageIFD.Artist]
     
     img.close()
-    os.remove(img_path)
+    if delete:
+        os.remove(img_path)
     return respiratory_rate.decode('utf-8')
 
 
@@ -68,14 +70,17 @@ def new_route():
     process.kill()
     
     # Extract the respiratory rate from the video
+    img = convert_video_to_data_url("respiratory_rate.png",delete=False)
     respiratory_rate = get_respirator_rate_from_image("respiratory_rate.png")
     data = convert_video_to_data_url("output.mp4")
     
-    return jsonify({"video" : data , "respiratoryRate" : respiratory_rate}) , 200
+    return jsonify({"video" : data , "graph" : img , "respiratoryRate" : respiratory_rate}) , 200
 
 @app.route('/test',methods=['POST'])
 def temp_func():
-    return jsonify({"data" : "Hello World" ,"video" : "data" , "respiratoryRate" : "respiratory_rate"}) , 200
+    data = convert_video_to_data_url("./sample-data/output.mp4",delete=False)
+    img = convert_video_to_data_url("./sample-data/respiratory_rate.png",delete=False)
+    return jsonify({"data" : "Hello World" ,"video" : data , "graph" : img , "respiratoryRate"  : "respiratory_rate"}) , 200
 
 ## Main function
 if __name__ == '__main__':

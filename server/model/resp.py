@@ -68,6 +68,10 @@ def calculate_respiratory_rate(video_path, motion_threshold):
 
     # Add the metadata to the image
     img.save('respiratory_rate.png', exif=exif_bytes)
+    
+    img.close()
+    cap.release()
+    cv2.destroyAllWindows()
         
 
     return respiratory_rate

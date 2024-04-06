@@ -28,15 +28,29 @@ app = Flask(__name__)
 CORS(app)
 
 
+## Helper functions
 def convert_data_url_to_video(data_url):
     data = data_url.decode('utf-8')
     data = data.split(",")[1]
     data = base64.b64decode(data)
     with open("video-data.mp4", "wb") as f:
         f.write(data)
-    # shutil.move("video-data.mp4", "model/video-data.mp4")
 
+def convert_video_to_data_url(video_path):
+    with open(video_path, "rb") as f:
+        data = f.read()
+    data = base64.b64encode(data)
+    os.remove(video_path)
+    return data.decode('utf-8')
 
+def get_respirator_rate_from_image(img_path):
+    img = Image.open(img_path)
+    exif_dict = piexif.load(img.info['exif'])
+    respiratory_rate = exif_dict["0th"][piexif.ImageIFD.Artist]
+    
+    img.close()
+    os.remove(img_path)
+    return respiratory_rate.decode('utf-8')
 
 
 ## App routes
@@ -51,23 +65,17 @@ def new_route():
     convert_data_url_to_video(data)
     process = subprocess.Popen(['sh','execute.sh'])
     process.wait()
+    process.kill()
     
-    # Open the image
-    img = Image.open('respiratory_rate.png')
+    # Extract the respiratory rate from the video
+    respiratory_rate = get_respirator_rate_from_image("respiratory_rate.png")
+    data = convert_video_to_data_url("output.mp4")
+    
+    return jsonify({"video" : data , "respiratoryRate" : respiratory_rate}) , 200
 
-    # Extract the metadata
-    exif_dict = piexif.load(img.info['exif'])
-
-    # Get the respiratory rate
-    respiratory_rate = exif_dict["0th"][piexif.ImageIFD.Artist]
-
-    # Print the respiratory rate
-    print(f'Respiratory rate: {respiratory_rate} breaths per minute')
-        
-    print("Done")
-    return jsonify({"data" : "done"}) , 200
-
-
+@app.route('/test',methods=['POST'])
+def temp_func():
+    return jsonify({"data" : "Hello World" ,"video" : "data" , "respiratoryRate" : "respiratory_rate"}) , 200
 
 ## Main function
 if __name__ == '__main__':

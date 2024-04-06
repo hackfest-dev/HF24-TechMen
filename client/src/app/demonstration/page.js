@@ -22,14 +22,15 @@ export default function Page() {
       return;
     }
     try {
-      console.log(dataUrl);
       await fetch(`http://172.16.16.218:5000/demo`, {
         headers: {
           "Content-Type": "application/json",
         },
         method: "POST",
         body: JSON.stringify({ file: dataUrl }),
-      }).then(() => {
+      }).then(async(res) => {
+        const data = await res.json();
+        console.log(data);
         setLoad(false);
       });
     } catch (error) {

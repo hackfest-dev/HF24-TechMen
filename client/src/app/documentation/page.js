@@ -18,7 +18,8 @@ export default function Page() {
         <Carousel
           plugins={[
             Autoplay({
-              delay: 3000,
+              delay: 5000,
+              pauseOnHover: true,
             }),
           ]}
         >

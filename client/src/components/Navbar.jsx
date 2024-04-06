@@ -19,7 +19,7 @@ import {
 const NavLinks = [
 	{ id: 1, name: 'Home', path: '/' },
 	{ id: 2, name: 'Demo', path: '/demonstration' },
-	{ id: 3, name: 'Contact Us', path:'/contactus' },
+	{ id: 3, name: 'Contact Us', path:'/#team' },
   {id:4,name:'Docs',path:'/documentation'},
 ];
 

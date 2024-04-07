@@ -80,7 +80,7 @@ def new_route():
 def temp_func():
     data = convert_video_to_data_url("./sample-data/output.mp4",delete=False)
     img = convert_video_to_data_url("./sample-data/respiratory_rate.png",delete=False)
-    return jsonify({"data" : "Hello World" ,"video" : data , "graph" : img , "respiratoryRate"  : "respiratory_rate"}) , 200
+    return jsonify({"data" : "Hello World" ,"video" : data , "graph" : img , "respiratoryRate"  : "10"}) , 200
 
 ## Main function
 if __name__ == '__main__':

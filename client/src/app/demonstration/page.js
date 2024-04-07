@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
 
 export default function Page() {
@@ -40,7 +41,7 @@ export default function Page() {
       return;
     }
     try {
-      await fetch(`http://172.16.16.218:5000/test`, {
+      await fetch(`http://172.16.16.218:5000/demo`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -86,36 +87,80 @@ export default function Page() {
           accept="video/*"
           onInput={handleInput}
         />
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button onClick={handleSubmit} disabled={load}>
+          {load ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              This might take several minutes
+            </>
+          ) : (
+            "submit"
+          )}
+        </Button>
       </div>
-        {load ? (
-          <>
-            <div className="h-[700px] flex justify-center space-x-5 mt-5">
-            <Skeleton className="w-[300px] h-[300px] rounded-md" />
-            <Skeleton className="w-[300px] h-[300px] rounded-md" /></div>
-          </>
-        ) : result ? (
-          <><div className="md:flex justify-center md:space-x-5 mt-5">
+      {load ? (
+        <>
+          <div className="h-[700px] w-full flex justify-center space-x-5 mt-5 content-center">
+            <Skeleton className="w-[500px] h-[300px] rounded-md" />
+            <Skeleton className="w-[500px] h-[300px] rounded-md" />
+          </div>
+        </>
+      ) : result ? (
+        <>
+          <div className="md:flex justify-center md:space-x-5 mt-5">
             <video
-              className="w-[300px] h-[300px] rounded-md max-md:m-auto"
+              className="w-[500px] h-[500px] rounded-md max-md:m-auto"
               controls
               src={dataUrl}
               autoPlay
             ></video>
             <video
-              className="w-[300px] h-[300px] rounded-md max-md:m-auto"
+              className="w-[500px] h-[500px] rounded-md max-md:m-auto"
               controls
               src={result}
               autoPlay
-            ></video></div>
-            <Image src={graph} alt="graph" width={300} height={300} className="m-auto mt-8"/>
-            <p className="text-center mb-5">Respiratory Rate: {rate}</p>
-          </>
-        ) : (
-          <></>
-        )}
-        <div className={`${result? '':'absolute bottom-0 w-full'}`}><Footer/></div>
-      
+            ></video>
+          </div>
+          <div className="w-full flex flex-row justify-center gap-96 mt-2">
+            <Label className="text-md">Original Video</Label>
+            <Label className="text-md">Processed Video</Label>
+          </div>
+          <Image
+            src={graph}
+            alt="graph"
+            width={500}
+            height={500}
+            className="m-auto mt-8 border-2"
+          />
+          <p
+            className={`text-center mb-3 text-md mt-2 w-full ${
+              parseInt(rate) < 30 ? "text-red-500" : ""
+            }`}
+          >
+            {parseInt(rate) > 30
+              ? `Normal Respiratory Rate: ${rate}`
+              : `Low Respiratory Rate: ${rate}`}
+          </p>
+          <div className="w-full flex flex-row justify-center mb-5">
+            {parseInt(rate) < 30 ? (
+              <p className="text-center bg-destructive p-2 rounded-md text-md">
+                You might want to consult a doctor
+              </p>
+            ) : (
+              <>
+                <p className="text-center bg-foreground text-background p-2 rounded-md text-md">
+                  Your respiratory rate is normal
+                </p>
+              </>
+            )}
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
+      <div className={`${result ? "" : "absolute bottom-0 w-full"}`}>
+        <Footer />
+      </div>
     </div>
   );
 }
